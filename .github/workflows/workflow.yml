@@ -15,7 +15,7 @@ jobs:
         host: ec2-54-215-37-208.us-west-1.compute.amazonaws.com
         username: ubuntu
         key: ${{ secrets.KEY }}
-        port: 20
+        port: 22
         command_timeout: 30m
         script: |
           echo "Nice Job!!!"
