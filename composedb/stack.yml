@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  # MySQL database
+  mysql_db:
+    image: mysql:latest
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "example"
+      MYSQL_DATABASE: "Laprop"
+      MYSQL_USER: "eden"
+      MYSQL_PASSWORD: "eden"
+    ports:
+    - '3306:3306'
+    volumes:
+    - mysql_data:/var/lib/mysql
+
+
+  # Mongo database
+  mongo_db:
+    image: mongo:latest # Use the latest stable MongoDB image
+    restart: always
+    container_name: mongo_db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root # Use with caution, consider secure setup
+      MONGO_INITDB_ROOT_PASSWORD: example # Use with caution, consider secure setup
+    volumes:
+    - mongo_data:/data/db
+
+  # Mongo Express (optional)
+  mongo_express:
+    image: mongo-express # Consider alternative web UI tools with better security practices
+    restart: always
+    container_name: mongo_express
+    ports:
+    - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root # Use with caution, consider secure setup
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example # Use with caution, consider secure setup
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo_db:27017/ # Use with caution, consider secure setup
+      ME_CONFIG_BASICAUTH: "false" # Disable basic authentication if enabled
+
+volumes:
+  mysql_data:
+  mongo_data:

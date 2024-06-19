@@ -1,0 +1,29 @@
+# Node.js modules
+node_modules/
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+
+# Build artifacts (adjust based on your project structure)
+build/
+dist/
+out/
+
+# Optional: Coverage directory
+coverage/
+
+# Local development configuration
+.env*
+
+# Optional: IDE-specific cache or temporary files
+# (Adjust based on your IDE)
+.idea/
+.vscode/
+
+# Optional: Coverage directory
+coverage/
+
+# Git files
+.git
+.gitignore

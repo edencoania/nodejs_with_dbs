@@ -1,0 +1,77 @@
+# Node.js dependencies
+node_modules/
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+
+# Logs
+logs/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids/*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/*
+
+# Build artifacts (adjust based on your build tools)
+build/
+dist/
+out/
+
+# Cache directories
+.npm
+.cache
+.eslintcache
+.stylelintcache
+
+# Optional: REPL history
+.node_repl_history
+
+# Environment variables
+.env*  # Matches all environment variable files (e.g., .env, .env.local, etc.)
+
+# Editor configuration and temporary files
+.vscode/
+.idea/
+.gitpod/
+*.swp
+
+# Testing tools (adjust based on your testing framework)
+jest/__snapshots__/
+cypress/screenshots/
+playwright/__snapshots__/
+
+# Type checking cache
+*.tsbuildinfo
+
+# IDE-specific cache or temporary files
+# (Adjust based on your IDE)
+.idea/
+.vscode/
+
+# Linters or formatters (adjust based on tools used)
+eslintcache
+stylelintcache
+
+# Serverless framework folders (adjust based on framework)
+.serverless/
+.now/
+
+# CI/CD tools
+.travis.yml
+coverage.xml
+.gitlab-ci.yml
+
+# Local development configuration
+.env.local
