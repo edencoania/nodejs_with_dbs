@@ -21,7 +21,7 @@ jobs:
         port: 22
         script: |
           ls -a
-
+          pwd
     - name: Step description
       run: |
         ssh -o StrictHostKeyChecking=accept-new ubuntu@ec2-54-215-37-208.us-west-1.compute.amazonaws.com << 'EOF'
