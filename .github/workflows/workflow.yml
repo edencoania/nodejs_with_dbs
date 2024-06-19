@@ -12,10 +12,14 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Set up SSH agent
-      uses: webfactory/ssh-agent@v0.5.3
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v1.0.3
       with:
-        ssh-private-key: ${{ secrets.KEY }}
+        host: ec2-13-52-249-191.us-west-1.compute.amazonaws.com
+        username: ubuntu
+        key: ${{ secrets.KEY }}
+        port: 22
+        script: whoami
 
     - name: Step description
       run: |
