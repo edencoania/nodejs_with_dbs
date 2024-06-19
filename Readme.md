@@ -1,34 +1,3 @@
-Project Name - nodejs_with_dbs
-
-Description
-
-This Node.js project demonstrates how to connect to both MySQL and MongoDB databases within separate Docker containers. It provides a simple API to store data:
-
-/laptops/store (GET request): Saves laptop data to a MySQL database.
-/laptops/get (GET request): retrieve laptop data to a MySQL database.
-
-/users/store (GET request): Saves user data to a MongoDB database.
-/users/store (GET request): Saves user data to a MongoDB database.
-Source Code:
-
-This project is hosted on GitHub: https://github.com/edencoania/nodejs_with_dbs.git
-
-Prerequisites
-
-Docker installed and running (https://docs.docker.com/engine/install/)
-Docker Compose installed (https://docs.docker.com/compose/install/)
-Node.js and npm (or yarn) installed (https://nodejs.org/en/download/package-manager/current)
-Setup
-
-Clone the repository:
-
-git clone https://github.com/edencoania/nodejs_with_dbs.git
-
-
-
-
-----------------------
-
 # Project Name - nodejs_with_dbs
 
 # Description
@@ -58,12 +27,14 @@ This project is hosted on GitHub: [https://github.com/edencoania/nodejs_with_dbs
    git clone [https://github.com/edencoania/nodejs_with_dbs.git](https://github.com/edencoania/nodejs_with_dbs.git)
 
 
-Start the databases:
+# Start the Databases
 
+Navigate to the project directory 
 Run the following command in your terminal to start the MySQL and MongoDB containers using Docker Compose:
 
-
-docker-compose -f composedb/stack.yml up -d
+   ```bash
+   cd nodejs_with_dbs
+   docker-compose -f composedb/stack.yml up -d
 
 This command will:
 
