@@ -34,73 +34,53 @@ Run the following command in your terminal to start the MySQL and MongoDB contai
 
    ```bash
    cd nodejs_with_dbs
-   docker-compose -f composedb/stack.yml up -d
-
+   docker-compose -f composedb/stack.yml up -d 
+   ```
 
 This command will:
 
 Build the Docker images for MySQL and MongoDB from the composedb directory.
 Start the containers in detached mode (-d) to run them in the background.
 
-Install dependencies:
+# Install dependencies:
 
 Navigate to the project directory and install the required Node.js dependencies:
 
-Bash
+ ```Bash
 cd your-project-name
 npm install  # or yarn install
-חשוב להשתמש בקוד בזהירות.
-content_copy
-Running the Application
+ ```
+
+# Running the Application
 
 Start the Node.js server:
 
 Run the following command to start your Node.js application:
 
-Bash
+ ```Bash
 npm start  # or yarn start
-חשוב להשתמש בקוד בזהירות.
-content_copy
-This will typically start your server on a default port (e.g., 3000).
+ ```
+This will start your server on a default port (e.g., 8000).
 
-API Endpoints
+# API Endpoints
+open browser 
 
-Store Laptop Data (MySQL):
+## Store Laptop Data (MySQL):
 
-Make a POST request to http://localhost:<port>/laptops/store with the laptop data in the request body (e.g., using tools like Postman, cURL, or a browser extension). The data will be saved to the MySQL database. Replace <port> with the actual port your server is running on.
+Make a GET request to http://localhost:8000/laptops/store - It will save default data to MySql inside the docker container.
 
-Example Request Body (JSON):
+## Store User Data (MongoDB):
 
-JSON
-{
-  "brand": "Dell",
-  "model": "XPS 13",
-  "price": 1299
-}
-חשוב להשתמש בקוד בזהירות.
-content_copy
-Store User Data (MongoDB):
+Make a GET request to http://localhost:8000/users/store It will save default data to mongoDB inside the docker container.
 
-Make a POST request to http://localhost:<port>/users/store with the user data in the request body. The data will be saved to the MongoDB database. Replace <port> with the actual port your server is running on.
 
-Example Request Body (JSON):
-
-JSON
-{
-  "name": "John Doe",
-  "email": "john.doe@example.com"
-}
-חשוב להשתמש בקוד בזהירות.
-content_copy
-Accessing the Application
-
-There's no specific "enter browser" step in this example as there's likely no frontend component. The API endpoints are designed for backend application interactions.
-
-Customization
+# Customization
 
 Database Credentials: Update the database connection details (username, password, etc.) in your code to match your MySQL and MongoDB configurations.
 API Endpoints: Modify the API endpoints (/laptops/store and /users/store) and their corresponding logic to suit your specific data models and requirements.
 Error Handling: Implement robust error handling in your Node.js application to gracefully handle database connection failures or invalid data.
 Additional Notes
+
+- Update accordingly the composedb/stack.yml
 
 This README serves as a basic guide. You'll likely need to modify it based on your project's specific implementation details.
