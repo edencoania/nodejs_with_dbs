@@ -2,7 +2,7 @@ name: Deploy Node.js App with Docker to EC2
 
 on:
   push:
-    branches: [master] # Trigger on push to the master branch
+    branches: [main] # Trigger on push to the master branch
 
 jobs:
   deploy:
