@@ -47,7 +47,6 @@ Start the containers in detached mode (-d) to run them in the background.
 Navigate to the project directory and install the required Node.js dependencies:
 
  ```Bash
-cd your-project-name
 npm install  # or yarn install
  ```
 
