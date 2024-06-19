@@ -9,24 +9,6 @@ jobs:
     runs-on: ubuntu-latest # Run the workflow on an Ubuntu runner
 
     steps:
-    - uses: actions/checkout@v3 # Checkout the repository code
-
-    - name: Configure AWS credentials (replace with your approach)
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} # Replace with secret name
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # Replace with secret name
-        AWS_DEFAULT_REGION: us-west-1 # Replace with your region if needed
-      run: |
-        echo "AWS credentials configured (placeholders for security)"
-
-    - name: Use AWS CLI (optional, replace with appropriate tool)
-      uses: aws-actions/aws-cli@v2
-      with:
-        aws-version: '2.28.0' # Adjust version as needed
-        region: us-west-1 # Replace with your region if needed
-        commands: |
-          aws ec2 describe-instances  # Replace with desired AWS CLI command
-
     - name: print out example job
       uses: appleboy/ssh-action@v0.1.10
       with:
