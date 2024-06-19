@@ -9,38 +9,22 @@ jobs:
     runs-on: ubuntu-latest # Run the workflow on an Ubuntu runner
 
     steps:
-    - name: print out example job
-      uses: appleboy/ssh-action@v0.1.10
-      with:
-        host: ec2-54-215-37-208.us-west-1.compute.amazonaws.com
-        username: ubuntu
-        key: ${{ secrets.KEY }}
-        port: 22
-        command_timeout: 30m
-        script: |
-          echo "Nice Job!!!"
-          sudo apt-get update
-          curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-          sudo apt-get install -y nodejs
-          sudo apt-get install -y docker.io
-          sudo usermod -aG docker $USER
-          sudo systemctl restart docker
-          curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
-          chmod +x docker-compose
-          sudo mv docker-compose /usr/local/bin/docker-compose
-          git clone https://github.com/edencoania/nodejs_with_dbs.git
-          cd nodejs_with_dbs
-          docker-compose -f composedb/stack.yml up -d
-          npm install
-          npm start
-
-
-    - name: Build and deploy Node.js application with Docker (replace with commands)
+    - name: Step description
       run: |
-        echo "Building and deploying Node.js application with Docker (replace with commands)"
-        # Replace with commands for building Docker image and deploying to EC2
-
-    - name: Clean up (optional)
-      run: |
-        echo "Cleaning up (optional)"
-        # Add commands to clean up temporary files or resources on the EC2 instance
+        ssh -o StrictHostKeyChecking=accept-new -i ${{ secrets.KEY }} ubuntu@ec2-54-215-37-208.us-west-1.compute.amazonaws.com << 'EOF'
+        echo "Nice Job!!!"
+        sudo apt-get update
+        curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+        sudo apt-get install -y docker.io
+        sudo usermod -aG docker $USER
+        sudo systemctl restart docker
+        curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+        chmod +x docker-compose
+        sudo mv docker-compose /usr/local/bin/docker-compose
+        git clone https://github.com/edencoania/nodejs_with_dbs.git
+        cd nodejs_with_dbs
+        docker-compose -f composedb/stack.yml up -d
+        npm install
+        npm start
+        EOF
