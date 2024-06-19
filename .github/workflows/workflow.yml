@@ -15,7 +15,7 @@ jobs:
         host: ${{ inputs.hostname }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
+        port: 20
         command_timeout: 30m
         script: |
           echo "Nice Job!!!"
