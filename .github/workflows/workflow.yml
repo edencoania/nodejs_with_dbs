@@ -9,9 +9,17 @@ jobs:
     runs-on: ubuntu-latest # Run the workflow on an Ubuntu runner
 
     steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH agent
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.KEY }}
+
     - name: Step description
       run: |
-        ssh -o StrictHostKeyChecking=accept-new -i ${{ secrets.KEY }} ubuntu@ec2-54-215-37-208.us-west-1.compute.amazonaws.com << 'EOF'
+        ssh -o StrictHostKeyChecking=accept-new ubuntu@ec2-54-215-37-208.us-west-1.compute.amazonaws.com << 'EOF'
         echo "Nice Job!!!"
         sudo apt-get update
         curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
