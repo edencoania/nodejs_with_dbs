@@ -8,7 +8,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "example"
-      MYSQL_DATABASE: "Laprop"
+      MYSQL_DATABASE: "Laptop"
       MYSQL_USER: "eden"
       MYSQL_PASSWORD: "eden"
     ports:
@@ -40,6 +40,18 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example # Use with caution, consider secure setup
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo_db:27017/ # Use with caution, consider secure setup
       ME_CONFIG_BASICAUTH: "false" # Disable basic authentication if enabled
+
+  # Mongo Express (optional)
+  Node.js:
+    image: "edencoania/release:github" # Consider alternative web UI tools with better security practices
+    restart: always
+    container_name: nodejs
+    ports:
+    - 8000:8000
+    environment:
+      MYSQL_HOST: mysql_db
+      MONGODB_URI: mongodb://root:example@mongo_db:27017/
+
 
 volumes:
   mysql_data:

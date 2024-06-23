@@ -26,7 +26,7 @@ router.get('/store', async function(req, res, next) {
 router.get('/get', async function(req, res, next) {
   try {
     const laptops = await getAllLaptops();
-    res.send(laptops);
+    res.status(200).send(laptops);
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send("Internal Server Error");

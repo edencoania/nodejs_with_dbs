@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const USER = require("./../models/user");
-const { addStudent, getAllStudents } = require('./../mongo/database'); // Import functions
+const { addUser, getAllUsers } = require('./../mongo/database'); // Import functions
 
 
 
@@ -9,9 +9,9 @@ router.get('/store',async function(req, res, next) {
   let aa;
   try {
     // Call database functions here
-    const newStudent = { name: "John Doe", email: "johnaaaaaaadoe@example.com", age: 25 }; // Example student data
-    await addStudent(newStudent);
-    aa = await getAllStudents();
+    const newUser = { name: "John Doe", email: "johnaaaaaaadoe@example.com", age: 25 }; // Example User data
+    await addUser(newUser);
+    aa = await getAllUsers();
   } catch (error) {
     console.error("Error:", error);
   }
@@ -21,7 +21,7 @@ router.get('/store',async function(req, res, next) {
 
 router.get('/get',async function(req, res, next) 
 {
-  const users = await USER.find({});
+  users = await getAllUsers();
   res.send(users);
 });
 

@@ -1,9 +1,9 @@
 const { MongoClient } = require('mongodb');
 
 // Replace these with your actual connection details
-const uri = "mongodb://localhost:27017/";  // Use the container name or IP address if needed
+const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-const databaseName = "students";  // Replace with your actual database name
+const databaseName = "Users";  // Replace with your actual database name
 
 async function connectToMongo() {
   try {
@@ -16,42 +16,42 @@ async function connectToMongo() {
   }
 }
 
-async function addStudent(student) {
+async function addUser(User) {
   const db = await connectToMongo(); // Get the database object
-  const collection = db.collection("students");
-  const result = await collection.insertOne(student);
-  console.log(`Student added with ID: ${result.insertedId}`);
+  const collection = db.collection("Users");
+  const result = await collection.insertOne(User);
+  console.log(`User added with ID: ${result.insertedId}`);
 }
 
-async function getAllStudents() {
+async function getAllUsers() {
   const db = await connectToMongo();
-  const collection = db.collection("students");
-  const students = await collection.find().toArray();
-  console.log("All students:", students);
-  return students;
+  const collection = db.collection("Users");
+  const Users = await collection.find().toArray();
+  console.log("All Users:", Users);
+  return Users;
 }
 
-async function deleteStudent(studentId) {
+async function deleteUser(UserId) {
   const db = await connectToMongo();
-  const collection = db.collection("students");
-  const result = await collection.deleteOne({ _id: studentId }); // Use _id for deletion
-  console.log(`Deleted student count: ${result.deletedCount}`);
+  const collection = db.collection("Users");
+  const result = await collection.deleteOne({ _id: UserId }); // Use _id for deletion
+  console.log(`Deleted User count: ${result.deletedCount}`);
 }
 
-async function updateStudent(studentId, updateData) {
+async function updateUser(UserId, updateData) {
   const db = await connectToMongo();
-  const collection = db.collection("students");
-  const result = await collection.updateOne({ _id: studentId }, { $set: updateData }); // Use $set for updates
-  console.log(`Updated student count: ${result.modifiedCount}`);
+  const collection = db.collection("Users");
+  const result = await collection.updateOne({ _id: UserId }, { $set: updateData }); // Use $set for updates
+  console.log(`Updated User count: ${result.modifiedCount}`);
 }
 
 
-async function findStudentsByAgeRange(minAge, maxAge) {
+async function findUsersByAgeRange(minAge, maxAge) {
   const db = await connectToMongo();
-  const collection = db.collection("students");
+  const collection = db.collection("Users");
   const filter = { age: { $gte: minAge, $lte: maxAge } };  // Filter by age range
-  const students = await collection.find(filter).toArray();
-  console.log("Students in age range:", students);
-  return students;
+  const Users = await collection.find(filter).toArray();
+  console.log("Users in age range:", Users);
+  return Users;
 }
-module.exports = { addStudent, getAllStudents, deleteStudent, updateStudent,findStudentsByAgeRange }; // Export all functions
+module.exports = { addUser, getAllUsers, deleteUser, updateUser,findUsersByAgeRange }; // Export all functions
