@@ -40,7 +40,7 @@ jobs:
     #     password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: something
-      run: "docker build -t edencoania/release:github -f dockerfile .\ndocker login -u edencoania -p e318652211\ndocker push edencoania/release:github \n#magic___^_^___line\n"
+      run: "docker build -t edencoania/release:github -f dockerfile .\ndocker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}\ndocker push edencoania/release:github \n#magic___^_^___line\n"
     # - name: Executing remote SSH commands using SSH key
     #   uses: appleboy/ssh-action@v1.0.3
     #   with:
