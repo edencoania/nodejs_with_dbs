@@ -38,6 +38,16 @@ jobs:
         registry: docker.io
         #     username: ${{ secrets.DOCKER_USERNAME }}
     #    password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Executing docker SSH commands using
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker push edencoania/release:github
+      environment:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} # Encrypted in Secrets Manager
+
+
+
 
     - name: Executing remote SSH commands using SSH key
       uses: appleboy/ssh-action@v1.0.3
