@@ -20,7 +20,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         source: composedb/stack.yml
-        target: composedb/stack.yml
+        target: .
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
