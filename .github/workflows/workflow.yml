@@ -21,6 +21,11 @@ jobs:
     #     port: 22
     #     source: composedb/stack.yml
     #     target: composedb/stack.yml
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     # - name: Set up QEMU
     #   uses: docker/setup-qemu-action@v3
