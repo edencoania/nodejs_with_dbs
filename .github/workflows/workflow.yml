@@ -34,7 +34,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: edencoania/release:latest
+        tags: edencoania/release:github
         registry: docker.io
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
