@@ -40,7 +40,7 @@ jobs:
     #    password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Executing docker SSH commands using
       run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         docker push edencoania/release:github
 
 
