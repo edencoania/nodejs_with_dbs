@@ -36,8 +36,8 @@ jobs:
         push: true
         tags: edencoania/release:latest
         registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        #     username: ${{ secrets.DOCKER_USERNAME }}
+    #    password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Executing remote SSH commands using SSH key
       uses: appleboy/ssh-action@v1.0.3
