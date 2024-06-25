@@ -2,7 +2,7 @@ name: Deploy Node.js App with Docker to EC2
 
 on:
   push:
-    branches: [main] # Trigger on push to the master branch
+    branches: [main] # Trigger on push to the main branch
 
 jobs:
   deploy:
@@ -12,8 +12,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-
-    - name: copy file to server
+    - name: Copy file to server
       uses: appleboy/scp-action@v0.1.7
       with:
         host: ec2-54-219-84-5.us-west-1.compute.amazonaws.com
@@ -23,31 +22,24 @@ jobs:
         source: composedb/stack.yml
         target: composedb/stack.yml
 
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      -
-      - uses: mr-smithers-excellent/docker-build-push@v6
-        name: Build & push Docker image
-        with:
-          image: edencoania/release
-          tags: nodejs_with_db, latest , github
-          registry: docker.io
-          dockerfile: Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-            
-            
-            name: Build and push
-            uses: docker/build-push-action@v6
-            with:
-              push: true
-              tags: edencoania/release:latest
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
 
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-    - name: executing remote ssh commands using ssh key
+    - name: Build & push Docker image
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: edencoania/release:latest
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Executing remote SSH commands using SSH key
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ec2-54-219-84-5.us-west-1.compute.amazonaws.com
@@ -66,4 +58,3 @@ jobs:
           chmod +x docker-compose
           sudo mv docker-compose /usr/local/bin/docker-compose
           docker-compose -f composedb/stack.yml up -d
-          sleep 30
