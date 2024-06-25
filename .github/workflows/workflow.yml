@@ -12,50 +12,51 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Copy file to server
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ec2-54-219-84-5.us-west-1.compute.amazonaws.com
-        username: ubuntu
-        key: ${{ secrets.KEY }}
-        port: 22
-        source: composedb/stack.yml
-        target: composedb/stack.yml
+    # - name: Copy file to server
+    #   uses: appleboy/scp-action@v0.1.7
+    #   with:
+    #     host: ec2-54-219-84-5.us-west-1.compute.amazonaws.com
+    #     username: ubuntu
+    #     key: ${{ secrets.KEY }}
+    #     port: 22
+    #     source: composedb/stack.yml
+    #     target: composedb/stack.yml
 
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
+    # - name: Set up QEMU
+    #   uses: docker/setup-qemu-action@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v3
 
-    - name: Build & push Docker image
-      uses: docker/build-push-action@v6
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: edencoania/release:github
-        registry: docker.io
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+    # - name: Build & push Docker image
+    #   uses: docker/build-push-action@v6
+    #   with:
+    #     context: .
+    #     file: ./Dockerfile
+    #     push: true
+    #     tags: edencoania/release:github
+    #     registry: docker.io
+    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+    #     password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-
-    - name: Executing remote SSH commands using SSH key
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ec2-54-219-84-5.us-west-1.compute.amazonaws.com
-        username: ubuntu
-        key: ${{ secrets.KEY }}
-        port: 22
-        script: |
-          ls -a
-          pwd
-          sudo apt-get update
-          curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-          sudo apt-get install -y docker.io
-          sudo usermod -aG docker $USER
-          sudo systemctl restart docker
-          curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
-          chmod +x docker-compose
-          sudo mv docker-compose /usr/local/bin/docker-compose
-          docker-compose -f composedb/stack.yml up -d
+    - name: something
+      run: "docker build -t edencoania/release:github -f dockerfile .\ndocker login -u edencoania -p e318652211\ndocker push edencoania/release:github \n#magic___^_^___line\n"
+    # - name: Executing remote SSH commands using SSH key
+    #   uses: appleboy/ssh-action@v1.0.3
+    #   with:
+    #     host: ec2-54-219-84-5.us-west-1.compute.amazonaws.com
+    #     username: ubuntu
+    #     key: ${{ secrets.KEY }}
+    #     port: 22
+    #     script: |
+    #       ls -a
+    #       pwd
+    #       sudo apt-get update
+    #       curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+    #       sudo apt-get install -y docker.io
+    #       sudo usermod -aG docker $USER
+    #       sudo systemctl restart docker
+    #       curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+    #       chmod +x docker-compose
+    #       sudo mv docker-compose /usr/local/bin/docker-compose
+    #       docker-compose -f composedb/stack.yml up -d
