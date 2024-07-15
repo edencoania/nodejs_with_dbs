@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  # MySQL database
+  mysql_db:
+    image: mysql:latest
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "example"
+      MYSQL_DATABASE: "Laptop"
+      MYSQL_USER: "eden"
+      MYSQL_PASSWORD: "eden"
+    ports:
+    - '3306:3306'
+    volumes:
+    - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:

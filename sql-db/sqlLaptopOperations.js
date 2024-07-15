@@ -1,5 +1,6 @@
 const pool = require('./database');
 const setup = require('./../setup_sql')
+const laptopSchema = require('./../models/user')
 /*
 async function addLaptop(laptop) {
   const { model, speed, ram, hd, price, screen } = laptop;
@@ -9,6 +10,7 @@ async function addLaptop(laptop) {
 
 
 async function addLaptop(laptop) {
+  setup.setup();
   const { model, speed, ram, hd, price, screen } = laptop;
   const connection = await pool.getConnection(); // Get a connection from the pool
 

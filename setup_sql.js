@@ -1,6 +1,6 @@
 const mysql = require('mysql2/promise');
 
-async function main() {
+async function setup() {
   try {
     // Step 1: Connect to MySQL server to create the database
     const connection = await mysql.createConnection({
@@ -21,7 +21,7 @@ async function main() {
     });
 
     // Create the database if it doesn't exist
-    await connection.query(`CREATE DATABASE IF NOT EXISTS Laptop`);
+    await connection.query(`CREATE DATABASE Laptop`);
     console.log('Database Laptop created or already exists.');
 
     // Step 2: Connect to the newly created database
@@ -61,6 +61,6 @@ async function main() {
 }
 
 // Execute the main function
-main();
+//main();
 
-module.exports = { main};
+module.exports = { setup};

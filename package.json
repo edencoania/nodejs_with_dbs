@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node setup_sql.js && node ./bin/www",
-    "prestart": "if [[ ! -z \"$MONGODB_URI\" ]]; then echo 'Waiting for MongoDB...'; sleep 30; fi"  
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
